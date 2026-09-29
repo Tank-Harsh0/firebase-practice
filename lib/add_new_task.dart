@@ -1,8 +1,11 @@
 import 'dart:io';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:frontend/utils.dart';
 import 'package:intl/intl.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AddNewTask extends StatefulWidget {
   const AddNewTask({super.key});
@@ -23,6 +26,21 @@ class _AddNewTaskState extends State<AddNewTask> {
     titleController.dispose();
     descriptionController.dispose();
     super.dispose();
+  }
+
+  Future<void> submit() async {
+    try {
+      await FirebaseFirestore.instance.collection('tasks').add({
+        "creator": FirebaseAuth.instance.currentUser!.uid,
+        "title": titleController.text.trim(),
+        "description": descriptionController.text.trim(),
+        "date": selectedDate,
+        "posted_At": FieldValue.serverTimestamp(),
+        "color": rgbToHex(_selectedColor)
+      });
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
@@ -122,7 +140,9 @@ class _AddNewTaskState extends State<AddNewTask> {
               ),
               const SizedBox(height: 10),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  await submit();
+                },
                 child: const Text(
                   'SUBMIT',
                   style: TextStyle(
