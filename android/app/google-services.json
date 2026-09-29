@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1009656958915",
+    "project_id": "fir-practice-54f70",
+    "storage_bucket": "fir-practice-54f70.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1009656958915:android:3d5d389be6c86d3e18b776",
+        "android_client_info": {
+          "package_name": "com.example.firebase_practice"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbEUN3wOQZe-YRQC4u9Hfkc3UI_ZWt1t8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
